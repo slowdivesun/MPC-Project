@@ -1,10 +1,10 @@
 from flask import Flask
 from dotenv import dotenv_values
+from flask_pymongo import pymongo
+import certifi
 
 config = dotenv_values(".env")
 
-from flask_pymongo import pymongo
-import certifi
 ca = certifi.where()
 
 
