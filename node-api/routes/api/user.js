@@ -1,33 +1,23 @@
+const bcrypt = require("bcryptjs");
 const express = require("express");
 const router = express.Router();
-const auth = require("../../middleware/auth");
-const User = require("../../models/User");
-const { check, validationResult } = require("express-validator");
-const config = require("config");
 const jwt = require("jsonwebtoken");
-const bcrypt = require("bcryptjs");
+const { check, validationResult } = require("express-validator");
+const User = require("../../models/User");
+const config = require("config");
 
-// @ route  GET api/auth
-// @desc    Login User
-// @access  Public
-router.get("/", auth, async (req, res) => {
-  try {
-    const user = await User.findById(req.user.id).select("-password");
-    res.json(user);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Server error");
-  }
-});
-
-// @ route  POST api/auth
-// @desc    Authenticate user
+// @ route  POST api/user
+// @desc    Register User
 // @access  Public
 router.post(
   "/",
   [
+    check("name", "Name is required").not().isEmpty(),
     check("email", "Please include a valid email").isEmail(),
-    check("password", "Password is required").exists(),
+    check(
+      "password",
+      "Please enter a password with 6 or more characters"
+    ).isLength({ min: 6 }),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -35,22 +25,22 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { email, password } = req.body;
+    const { name, email, password } = req.body;
     try {
       let user = await User.findOne({ email });
-      if (!user) {
+      if (user) {
         return res
           .status(400)
-          .json({ errors: [{ msg: "Invalid credentials" }] });
+          .json({ errors: [{ msg: "User already exists" }] });
       }
 
-      const isMatch = await bcrypt.compare(password, user.password);
+      user = new User({ name, email, password });
 
-      if (!isMatch) {
-        return res
-          .status(400)
-          .json({ errors: [{ msg: "Invalid credentials" }] });
-      }
+      const salt = await bcrypt.genSalt(10);
+
+      user.password = await bcrypt.hash(password, salt);
+
+      await user.save();
 
       const payload = {
         user: {
