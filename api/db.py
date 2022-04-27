@@ -14,5 +14,6 @@ db = client.get_database('myFirstDatabase')
 # print(db.list_collection_names())
 
 users = db.get_collection("users")
+entries = db.get_collection("entries")
 for user in users.find():
     print(user)
