@@ -8,16 +8,15 @@ const config = require("config");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
-router.post("/entry", auth, async (req, res) => {
+router.post("/", auth, async (req, res) => {
   const entryText = req.body.text;
-  const user = User.findById(req.user.id);
-  const id = user.id;
+  const user = await User.findById(req.user.id).select("-password");
 
   // what if user is not present
 
   // if user is present in database
   try {
-    const newEntry = new Entry({ id, entryText });
+    const newEntry = new Entry({ user: user, text: entryText });
     await newEntry.save();
 
     res.status(200).send("Successfully Saved");
@@ -26,3 +25,5 @@ router.post("/entry", auth, async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
+
+module.exports = router;
