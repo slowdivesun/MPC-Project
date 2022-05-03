@@ -17,8 +17,10 @@
 # from tensorflow.keras.layers import Dense, LSTM, Embedding, Bidirectional,Dropout
 
 import pickle
-pipelinemodel = pickle.load(open('api//model_pkl.pkl', 'rb'))
+pipelinemodel = pickle.load(open('api//model_pkl2.pkl', 'rb'))
 
 x_test = "I feel happy"
+x_arr = 
 
-print(pipelinemodel.predict(x_test))
+x_arr.reshape(-1,1)
+print(pipelinemodel.predict(x_arr))
