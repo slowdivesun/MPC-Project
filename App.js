@@ -12,17 +12,7 @@ import Diary from "./pages/Diary";
 export default function App() {
   return (
     <View style={styles.container}>
-      <Image
-        fadeDuration={2000}
-        style={styles.tinyLogo}
-        source={require("./cat.png")}
-      />
-      <Text>How was your Day?</Text>
-      <StatusBar style='auto' />
-      <TextInput style={styles.textInput} />
-      <TouchableOpacity style={styles.button}>
-        <Text>Submit</Text>
-      </TouchableOpacity>
+      <Diary />
     </View>
   );
 }

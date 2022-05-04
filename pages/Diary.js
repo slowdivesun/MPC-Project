@@ -7,19 +7,21 @@ const Diary = () => {
   const [diary, setDiary] = useState([]);
   useEffect(() => {
     const getEntries = async () => {
-      const res = await axios.get(
-        "http://localhost:3004/api/entry/user/6269219ebbc7b3b228b888a1"
-      );
-      setDiary(res.data);
+      try {
+        const res = await axios.get(
+          "http://220.158.144.40:3004/api/entry/user/6269219ebbc7b3b228b888a1/"
+        );
+      } catch (err) {
+        console.log(err);
+      }
     };
     getEntries();
   }, []);
   return (
     <View>
-      {diary.map((entry) => {
-        <Text>Hello</Text>;
-        // <DiaryItem item={entry} />;
-      })}
+      {diary.map((entry) => (
+        <Text>Hello</Text>
+      ))}
     </View>
   );
 };
