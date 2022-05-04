@@ -8,10 +8,14 @@ export default function DiaryItem({ item }) {
     <TouchableOpacity
       style={{
         flexDirection: "row",
-        justifyContent: "space-between",
+        justifyContent: "space-around",
+        alignItems: "center",
         width: 300,
-        backgroundColor: "white",
+        height: 50,
         opacity: 0.7,
+        borderColor: "white",
+        borderWidth: 2,
+        marginTop: 5,
       }}
     >
       <Text>{moment(date).format("MMMM Do YYYY")}</Text>
