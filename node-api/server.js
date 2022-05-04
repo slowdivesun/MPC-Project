@@ -1,5 +1,7 @@
+require("dotenv").config();
+const mongoose = require("mongoose");
+
 const express = require("express");
-const connectDB = require("./config/db");
 
 const app = express();
 
@@ -17,6 +19,17 @@ app.use(function (req, res, next) {
 });
 
 // Connect Database
+const db = process.env.MONGO_URI;
+
+const connectDB = async () => {
+  try {
+    await mongoose.connect(db);
+    console.log("MongoDB Connected");
+  } catch (err) {
+    console.error(err.message);
+    process.exit(1);
+  }
+};
 connectDB();
 
 // Init middleware

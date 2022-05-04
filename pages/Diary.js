@@ -9,10 +9,11 @@ const Diary = () => {
     const getEntries = async () => {
       try {
         const res = await axios.get(
-          "http://220.158.144.40:3004/api/entry/user/6269219ebbc7b3b228b888a1/"
+          "http://192.168.56.1:3004/api/entry/user/6269219ebbc7b3b228b888a1/"
         );
+        console.log("here", res);
       } catch (err) {
-        console.log(err);
+        console.log("err", err);
       }
     };
     getEntries();
