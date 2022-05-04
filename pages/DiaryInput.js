@@ -6,49 +6,35 @@ import {
   View,
   Image,
   ScrollView,
+  Button,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import DiaryItem from "../components/diaryItem/DiaryItem";
 import { ImageBackground } from "react-native-web";
 
 // background image source
-const image = {
-  uri: "https://preview.redd.it/ecls76uo6cw81.png?width=2560&format=png&auto=webp&s=f71cb08160ddb83451172f9ffed5d6340283a480",
-};
 
-const Diary = () => {
-  const [diary, setDiary] = useState([]);
-  useEffect(() => {
-    const getEntries = async () => {
-      try {
-        const res = await axios.get(
-          "https://mpc-project3-9gsppksen-slowdivesun.vercel.app/api/entry/user/6269219ebbc7b3b228b888a1/"
-        );
-        setDiary(res.data);
-      } catch (err) {
-        console.log("err", err);
-      }
-    };
-    getEntries();
-  }, []);
+
+const DiaryInput = () => {
   return (
     <View style={stylesdiarylist.container}>
-      <Text style={stylesdiarylist.heading}> Diary Entries </Text>
+      <Text style={stylesdiarylist.heading}>Whats on your mind? </Text>
        <Image
         style={stylesdiarylist.tinyLogo}
-        source={require('../cat.png')}
+        source={require('../butterfly.png')}
       />
-      <ScrollView style={stylesdiarylist.scrollView} 
-        contentContainerStyle={stylesdiarylist.container}>
-      {diary.map((entry) => (
-<View>
-        <View style={stylesdiarylist.paragraph}>
-        <DiaryItem item={entry} />
-      </View>
-      </View>
-      ))}
-      </ScrollView>
+
+         <TextInput
+        style={stylesdiarylist.input}
+        
+        placeholder="Enter your thoughts.."
+       
+      />
+      <Button
+        title="Submit"
+        style={stylesdiarylist.button}
+      />
+     
     </View>
 
   );
@@ -62,12 +48,25 @@ const stylesdiarylist = StyleSheet.create({
     backgroundColor: "#fff",
        width:'100%',
   },
+    button: {
+    marginTop: 10,
+    backgroundColor: "#a99ec4",
+    padding: 10,
+  },
+   input: {
+   borderColor: "black",
+    height: 50,
+    justifyContent: "flex-start",
+    padding: 10,
+    borderWidth: 1,
+    width: 300,
+    margin: 30,
+  },
   heading: {
-         padding: 20,
+    padding: 20,
     alignItems: "center",
     justifyContent: "center",
     fontSize: 30,
-    marginTop : 80,
 
   },
    paragraph: {
@@ -81,7 +80,6 @@ const stylesdiarylist = StyleSheet.create({
     padding: 50,
     width: '70%',
     height: 100,
-     borderRadius: 5,
   },
     scrollView: {
     height: '90%',
@@ -99,4 +97,4 @@ const stylesdiarylist = StyleSheet.create({
     height: 100,
   },
 });
-export default Diary;
+export default DiaryInput;

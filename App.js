@@ -6,13 +6,15 @@ import {
   TouchableOpacity,
   View,
   Image,
+  Button,
 } from "react-native";
-import Diary from "./pages/Diary";
+import Diarypage from "./pages/Diarypage";
+
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Diary />
+      <Diarypage />
     </View>
   );
 }
