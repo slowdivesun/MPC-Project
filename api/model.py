@@ -17,10 +17,21 @@
 # from tensorflow.keras.layers import Dense, LSTM, Embedding, Bidirectional,Dropout
 
 import pickle
-pipelinemodel = pickle.load(open('api//model_pkl2.pkl', 'rb'))
 
-x_test = "I feel happy"
-x_arr = 
 
-x_arr.reshape(-1,1)
-print(pipelinemodel.predict(x_arr))
+from sklearn.feature_extraction.text import CountVectorizer
+pipelinemodel = pickle.load(open('api//model_pkl_final.pkl', 'rb'))
+
+
+x_test = ["I feel happy because I won the competition today and attended a party","I was sad because my dog died"]
+
+result = pipelinemodel.predict(x_test)
+emotionarr = ["negative emotion","positive emotion"] #0 - negative, 1 - positive
+print(x_test[0] , ":", emotionarr[result[0]])
+print(x_test[1] , ":", emotionarr[result[1]])
+
+
+
+
+# create pipeline of data prep , countvectorizer, model 
+
