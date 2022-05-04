@@ -9,9 +9,9 @@ const Diary = () => {
     const getEntries = async () => {
       try {
         const res = await axios.get(
-          "http://192.168.56.1:3004/api/entry/user/6269219ebbc7b3b228b888a1/"
+          "https://mpc-project3-9gsppksen-slowdivesun.vercel.app/api/entry/user/6269219ebbc7b3b228b888a1/"
         );
-        console.log("here", res);
+        setDiary(res.data);
       } catch (err) {
         console.log("err", err);
       }
@@ -21,7 +21,7 @@ const Diary = () => {
   return (
     <View>
       {diary.map((entry) => (
-        <Text>Hello</Text>
+        <DiaryItem item={entry} />
       ))}
     </View>
   );
