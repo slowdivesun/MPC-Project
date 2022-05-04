@@ -8,7 +8,7 @@ import pickle
 
 app = Flask(__name__)
 emotionarr = ["negative emotion","positive emotion"] #0 - negative, 1 - positive
-pipelinemodel = pickle.load(open('api//model_pkl_final.pkl', 'rb'))
+pipelinemodel = pickle.load(open('model_pkl_final.pkl', 'rb'))
 @app.route("/diary", methods=["GET"])
 def hello():
     return "Hello"

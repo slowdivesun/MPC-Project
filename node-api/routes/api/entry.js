@@ -20,7 +20,9 @@ router.post("/", auth, async (req, res) => {
     const newEntry = new Entry({ user: user, text: entryText });
     const savedEntry = await newEntry.save();
 
-    await axios.post("http://localhost:5000/emotion/" + savedEntry._id);
+    await axios.post("http://localhost:5000/emotion/" + savedEntry._id, {
+      text: entryText,
+    });
 
     res.status(200).send(savedEntry);
   } catch (err) {
