@@ -10,7 +10,7 @@ const EntrySchema = new mongoose.Schema({
     required: true,
   },
   emotion: {
-    type: String,
+    type: Number,
     default: null,
   },
   date: {

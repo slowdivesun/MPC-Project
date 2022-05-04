@@ -6,16 +6,18 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import Diary from "./pages/Diary";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>How was your Day?</Text>
+      <Diary />
+      {/* <Text>How was your Day?</Text>
       <StatusBar style='auto' />
       <TextInput style={styles.textInput} />
       <TouchableOpacity style={styles.button}>
         <Text>Submit</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
   );
 }
