@@ -5,19 +5,24 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  Image,
 } from "react-native";
 import Diary from "./pages/Diary";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Diary />
-      {/* <Text>How was your Day?</Text>
+      <Image
+        fadeDuration={2000}
+        style={styles.tinyLogo}
+        source={require("./cat.png")}
+      />
+      <Text>How was your Day?</Text>
       <StatusBar style='auto' />
       <TextInput style={styles.textInput} />
       <TouchableOpacity style={styles.button}>
         <Text>Submit</Text>
-      </TouchableOpacity> */}
+      </TouchableOpacity>
     </View>
   );
 }
@@ -39,7 +44,11 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 10,
-    backgroundColor: "#D36C55",
+    backgroundColor: "#C1CAE3",
     padding: 10,
+  },
+  tinyLogo: {
+    width: 100,
+    height: 100,
   },
 });
