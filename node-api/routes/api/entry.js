@@ -9,7 +9,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const { default: axios } = require("axios");
 
-router.post("/", async (req, res) => {
+router.post("/", auth, async (req, res) => {
   const entryText = req.body.text;
   const user = await User.findById(req.user.id).select("-password");
 
