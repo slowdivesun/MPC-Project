@@ -23,7 +23,7 @@ const Diary = ({ navigation }) => {
     const getEntries = async () => {
       try {
         const res = await axios.get(
-          "https://mpc-project3-9gsppksen-slowdivesun.vercel.app/api/entry/user/6269219ebbc7b3b228b888a1/"
+          "https://mpc-project3-eoag6bnep-slowdivesun.vercel.app/api/entry/user/6269219ebbc7b3b228b888a1/"
         );
         setDiary(res.data);
       } catch (err) {
@@ -40,8 +40,8 @@ const Diary = ({ navigation }) => {
         style={stylesdiarylist.scrollView}
         contentContainerStyle={stylesdiarylist.container}
       >
-        {diary.map((entry) => (
-          <View>
+        {diary.map((entry, idx) => (
+          <View key={idx}>
             <View style={stylesdiarylist.paragraph}>
               <DiaryItem
                 onPress={() =>

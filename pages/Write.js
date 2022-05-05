@@ -18,11 +18,18 @@ const Write = ({ navigation }) => {
     e.preventDefault();
     // console.log("hello");
     try {
-      const res = await axios.post(
-        "https://mpc-project3-f029kqzjx-slowdivesun.vercel.app/api/entry/6269219ebbc7b3b228b888a1",
-        { text }
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+
+      const { data } = await axios.post(
+        "https://mpc-project3-eoag6bnep-slowdivesun.vercel.app/api/entry/6269219ebbc7b3b228b888a1",
+        { text },
+        config
       );
-      console.log(res);
+      console.log(data);
     } catch (err) {
       console.log(err);
     }
@@ -50,7 +57,7 @@ const Write = ({ navigation }) => {
       <StatusBar style='auto' />
       <TextInput
         value={text}
-        onChange={(e) => setText(e.target.value)}
+        onChangeText={(e) => setText(e)}
         style={styles.textInput}
       />
       <TouchableOpacity onPress={(e) => onSubmit(e)} style={styles.button}>

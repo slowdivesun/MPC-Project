@@ -12,7 +12,6 @@ const { default: axios } = require("axios");
 router.post("/:id", async (req, res) => {
   const entryText = req.body.text;
   const user = await User.findById(req.params.id).select("-password");
-
   // what if user is not present
 
   // if user is present in database
