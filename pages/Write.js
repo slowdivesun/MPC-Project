@@ -20,7 +20,7 @@ const Write = ({ navigation }) => {
     try {
       const res = await axios.post(
         "https://mpc-project3-f029kqzjx-slowdivesun.vercel.app/api/entry/6269219ebbc7b3b228b888a1",
-        { text: text }
+        { text }
       );
       console.log(res);
     } catch (err) {
