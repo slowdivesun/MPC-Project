@@ -25,7 +25,7 @@ const Write = ({ navigation }) => {
       };
 
       const { data } = await axios.post(
-        "https://mpc-project3-eoag6bnep-slowdivesun.vercel.app/api/entry/6269219ebbc7b3b228b888a1",
+        "https://mpc-project3-2qin6pbqm-slowdivesun.vercel.app/api/entry/6269219ebbc7b3b228b888a1",
         { text },
         config
       );
