@@ -9,12 +9,12 @@ import {
   Button,
 } from "react-native";
 import Diarypage from "./pages/Diarypage";
-
+import Write from "./pages/Write";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Diarypage />
+      <Write />
     </View>
   );
 }
