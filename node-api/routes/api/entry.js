@@ -9,9 +9,9 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const { default: axios } = require("axios");
 
-router.post("/", auth, async (req, res) => {
+router.post("/", async (req, res) => {
   const entryText = req.body.text;
-  const user = await User.findById(req.user.id).select("-password");
+  const user = await User.findById(req.body.user).select("-password");
 
   // what if user is not present
 
