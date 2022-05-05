@@ -17,7 +17,7 @@ const image = {
   uri: "https://preview.redd.it/ecls76uo6cw81.png?width=2560&format=png&auto=webp&s=f71cb08160ddb83451172f9ffed5d6340283a480",
 };
 
-const Diary = () => {
+const Diary = ({ navigation }) => {
   const [diary, setDiary] = useState([]);
   useEffect(() => {
     const getEntries = async () => {
@@ -35,66 +35,68 @@ const Diary = () => {
   return (
     <View style={stylesdiarylist.container}>
       <Text style={stylesdiarylist.heading}> Diary Entries </Text>
-       <Image
-        style={stylesdiarylist.tinyLogo}
-        source={require('../cat.png')}
-      />
-      <ScrollView style={stylesdiarylist.scrollView} 
-        contentContainerStyle={stylesdiarylist.container}>
-      {diary.map((entry) => (
-<View>
-        <View style={stylesdiarylist.paragraph}>
-        <DiaryItem item={entry} />
-      </View>
-      </View>
-      ))}
+      <Image style={stylesdiarylist.tinyLogo} source={require("../cat.png")} />
+      <ScrollView
+        style={stylesdiarylist.scrollView}
+        contentContainerStyle={stylesdiarylist.container}
+      >
+        {diary.map((entry) => (
+          <View>
+            <View style={stylesdiarylist.paragraph}>
+              <DiaryItem
+                onPress={() =>
+                  navigation.navigate("Entry", {
+                    item: entry,
+                  })
+                }
+                item={entry}
+              />
+            </View>
+          </View>
+        ))}
       </ScrollView>
     </View>
-
   );
 };
 const stylesdiarylist = StyleSheet.create({
   container: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'lightgrey',
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "lightgrey",
     paddingBottom: 50,
     backgroundColor: "#fff",
-       width:'100%',
+    width: "100%",
   },
   heading: {
-         padding: 20,
+    padding: 20,
     alignItems: "center",
     justifyContent: "center",
     fontSize: 30,
-    marginTop : 80,
-
   },
-   paragraph: {
+  paragraph: {
     alignItems: "center",
     justifyContent: "center",
-    fontFamily: 'kalam-light',
+    fontFamily: "kalam-light",
     backgroundColor: "#c2cae3",
     marginVertical: 8,
     fontSize: 18,
     lineHeight: 25,
     padding: 50,
-    width: '70%',
+    width: "70%",
     height: 100,
-     borderRadius: 5,
+    borderRadius: 5,
   },
-    scrollView: {
-    height: '90%',
-    width: '100%',
+  scrollView: {
+    height: "90%",
+    width: "100%",
     margin: 20,
-    alignSelf: 'center',
+    alignSelf: "center",
     padding: 20,
     borderWidth: 5,
     borderRadius: 5,
-    borderColor: 'transparent',
-  
+    borderColor: "transparent",
   },
-    tinyLogo: {
+  tinyLogo: {
     width: 100,
     height: 100,
   },

@@ -10,51 +10,52 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { ImageBackground } from "react-native-web";
+import moment from "moment";
 
 // background image source
 
+const Diarypage = ({ _, route }) => {
+  const { item } = route?.params;
 
-const Diarypage = () => {
   return (
     <View style={stylesdiarylist.container}>
+      <Text style={stylesdiarylist.heading}>
+        {" "}
+        {moment(item.date).format("MMMM Do YYYY")}{" "}
+      </Text>
 
-      <Text style={stylesdiarylist.heading}> dateofentry Comes Here </Text>
+      <Image source={require("../cat.png")} />
 
-      
-      
-      <Image source={require('../cat.png')}/>
-     
-        
-    
-       <View style={stylesdiarylist.paragraph}>
-       <Text>
-       Diary entry Lorem csyuwqvduwqdhowqbdk dbwdhoiwqhdphdp1
-       </Text>
-       </View>
-
-     
-     
+      <View
+        style={[
+          stylesdiarylist.paragraph,
+          {
+            backgroundColor:
+              item.emotion === "positive emotion" ? "#aae09b" : "#d99a98",
+          },
+        ]}
+      >
+        <Text>{item?.text}</Text>
+      </View>
     </View>
-
   );
 };
 const stylesdiarylist = StyleSheet.create({
   container: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'lightgrey',
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "lightgrey",
     paddingBottom: 50,
     backgroundColor: "#fff",
-       width:'100%',
+    width: "100%",
   },
-    button: {
+  button: {
     marginTop: 10,
     backgroundColor: "#a99ec4",
     padding: 10,
   },
-   input: {
-   borderColor: "black",
+  input: {
+    borderColor: "black",
     height: 50,
     justifyContent: "flex-start",
     padding: 10,
@@ -67,31 +68,28 @@ const stylesdiarylist = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     fontSize: 30,
-
   },
-   paragraph: {
+  paragraph: {
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#c2cae3",
     marginVertical: 10,
     fontSize: 20,
     padding: 5,
-    width: '90%',
-    height: '60%',
-     borderRadius: 5,
+    width: "90%",
+    height: "60%",
+    borderRadius: 5,
   },
-    scrollView: {
-    height: '90%',
-    width: '100%',
+  scrollView: {
+    height: "90%",
+    width: "100%",
     margin: 20,
-    alignSelf: 'center',
+    alignSelf: "center",
     padding: 20,
     borderWidth: 5,
     borderRadius: 5,
-    borderColor: 'transparent',
-  
+    borderColor: "transparent",
   },
-    tinyLogo: {
+  tinyLogo: {
     width: 100,
     height: 100,
   },

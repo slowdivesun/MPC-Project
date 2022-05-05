@@ -11,7 +11,7 @@ import {
 import React, { useState } from "react";
 import axios from "axios";
 
-const Write = () => {
+const Write = ({ navigation }) => {
   const [text, setText] = useState("");
 
   const onSubmit = async (e) => {
@@ -19,7 +19,7 @@ const Write = () => {
     // console.log("hello");
     try {
       const res = await axios.post(
-        "https://mpc-project3-9gsppksen-slowdivesun.vercel.app/api/entry",
+        "https://mpc-project3-f029kqzjx-slowdivesun.vercel.app/api/entry/6269219ebbc7b3b228b888a1",
         { text: text }
       );
       console.log(res);
@@ -30,6 +30,17 @@ const Write = () => {
   };
   return (
     <View style={styles.container}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("Diary")}
+        style={{
+          backgroundColor: "white",
+          position: "absolute",
+          top: 10,
+          padding: 10,
+        }}
+      >
+        <Text>Your Entries</Text>
+      </TouchableOpacity>
       <Image
         fadeDuration={2000}
         style={styles.tinyLogo}

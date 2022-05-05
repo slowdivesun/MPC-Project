@@ -9,20 +9,30 @@ import {
   Button,
 } from "react-native";
 import Diarypage from "./pages/Diarypage";
+import Diary from "./pages/Diary";
 import Write from "./pages/Write";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Write />
-    </View>
+    <NavigationContainer>
+      {/* <Diary /> */}
+      <Stack.Navigator>
+        <Stack.Screen name='Home' component={Write} />
+        <Stack.Screen name='Diary' component={Diary} />
+        <Stack.Screen name='Entry' component={Diarypage} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "red",
     alignItems: "center",
     justifyContent: "center",
   },

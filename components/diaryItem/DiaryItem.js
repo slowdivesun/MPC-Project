@@ -2,10 +2,11 @@ import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import moment from "moment";
 
-export default function DiaryItem({ item }) {
+export default function DiaryItem({ item, onPress }) {
   const { text, date, emotion } = item;
   return (
     <TouchableOpacity
+      onPress={onPress}
       style={{
         flexDirection: "row",
         justifyContent: "space-around",
@@ -19,7 +20,7 @@ export default function DiaryItem({ item }) {
       }}
     >
       <Text>{moment(date).format("MMMM Do YYYY")}</Text>
-      <Text>{emotion === 0 ? "Negative" : "Positive"}</Text>
+      <Text>{emotion === "positive emotion" ? "Positive" : "Negative"}</Text>
     </TouchableOpacity>
   );
 }
