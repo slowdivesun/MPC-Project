@@ -1,6 +1,6 @@
 # Diary Entry Emotion Analysis
 
-An android application for users to enter their diary entries.
+An application for users to enter their diary entries.
 The app detects the emotion - positive or negative based on the entry
 
 # Techstack
